@@ -18,5 +18,7 @@
 #
 # http://numenta.org/licenses/
 # ----------------------------------------------------------------------
-from kwinner_layer import KWinner
-from sparse_nn import SparseWeightNN
+import constraints
+import layers
+from sparse_mnist_net import (SparseMNISTNet,
+                              SparseWeightMNISTNet)

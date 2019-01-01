@@ -27,7 +27,7 @@ from tensorflow import keras
 
 
 
-def compute_kwinners(x, k, dutyCycles, boostStrength):
+def _compute_kwinners(x, k, dutyCycles, boostStrength):
   """
   Use the boost strength to compute a boost factor for each unit represented
   in x. These factors are used to increase the impact of each unit to improve
@@ -184,9 +184,9 @@ class KWinner(keras.layers.Layer):
 
     # Apply k-winner algorithm if k < n, otherwise default to standard RELU
     x = tf.cond(tf.math.not_equal(k, self.n),
-                lambda: compute_kwinners(inputs, k=k,
-                                         dutyCycles=self.dutyCycles,
-                                         boostStrength=self.boostStrength),
+                lambda: _compute_kwinners(inputs, k=k,
+                                          dutyCycles=self.dutyCycles,
+                                          boostStrength=self.boostStrength),
                 lambda: tf.nn.relu(inputs))
 
     # Update moving average of duty cycle for training iterations only
